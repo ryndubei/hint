@@ -26,6 +26,12 @@ foreign import stdcall unsafe "winbase.h GetCurrentProcessId"
     c_GetCurrentProcessId :: IO Word32
 
 getPID = fromIntegral <$> c_GetCurrentProcessId
+#elif defined(wasi_HOST_OS)
+-- getProcessID is unsupported in browser wasi and will crash at runtime.
+--
+-- Could alternatively return some unique web worker identifier, if such a thing
+-- were to exist.
+getPID = pure 0
 #else
 getPID = fromIntegral <$> getProcessID
 #endif
