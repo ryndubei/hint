@@ -76,7 +76,6 @@ library
   build-depends: base == 4.*,
                  containers,
                  ghc >= 8.4 && < 9.15,
-                 ghc-paths,
                  ghc-boot,
                  transformers,
                  filepath,
@@ -84,6 +83,9 @@ library
                  random,
                  directory,
                  temporary
+  if !os(wasi) {
+    build-depends: ghc-paths
+  }
 
   if impl(ghc >= 8.10) {
       cpp-options: -DTHREAD_SAFE_LINKER
@@ -112,6 +114,9 @@ library
                    Hint.Util
                    Hint.Annotations
                    Control.Monad.Ghc
+  if os(wasi) {
+    other-modules: GHC.Paths
+  }
 
   hs-source-dirs: src
 
