@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Hint.InterpreterT (
     InterpreterT, Interpreter,
     runInterpreter, runInterpreterWithArgs, runInterpreterWithArgsLibdir,
@@ -25,7 +26,11 @@ import System.IO.Unsafe (unsafePerformIO)
 import Data.IORef
 import Data.Maybe
 
+#if defined(wasi_HOST_OS)
+import qualified Hint.Paths as GHC.Paths
+#else
 import qualified GHC.Paths
+#endif
 
 import qualified Hint.GHC as GHC
 

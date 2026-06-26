@@ -113,10 +113,8 @@ library
                    Hint.Typecheck
                    Hint.Util
                    Hint.Annotations
+                   Hint.Paths
                    Control.Monad.Ghc
-  if os(wasi) {
-    other-modules: GHC.Paths
-  }
 
   hs-source-dirs: src
 

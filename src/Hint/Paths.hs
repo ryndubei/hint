@@ -1,5 +1,5 @@
 -- | Replacement module for ghc-paths on wasi
-module GHC.Paths (libdir) where
+module Hint.Paths (libdir) where
 
 libdir :: FilePath
 -- as in `ghc-api-browser` in ghc's testsuite
